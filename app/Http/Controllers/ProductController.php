@@ -10,22 +10,18 @@ class ProductController extends Controller
     //Lista de productos
     function index()
     {
-        return "Lista de productos";
+        return view('products.index');
     }
 
     //Formulario de creación de productos
     public function create()
     {
-        return "Formulario de creación de productos";
+        return view('products.create');
     }
 
     //Productos por id
     public function show($id, $category = null)
     {
-        if ($category === null) {
-            return "Detalle del producto: " . $id;
-        }
-    
-        return "Detalle del producto: " . $id . "; de la categoría: " . $category;
+        return view('products.show');
     }
 }
