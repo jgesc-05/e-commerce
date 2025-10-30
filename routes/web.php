@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'index']);
 
 
 //Grupo de rutas de productos, con la anotación prefix se agrega el prefijo products a las rutas, que hace innecesario agregar el prefijo products a cada ruta, con controller
@@ -24,3 +25,10 @@ Route::prefix('products')->controller(ProductController::class)->group(function(
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::prefix('admin')->group(function(){
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+});
