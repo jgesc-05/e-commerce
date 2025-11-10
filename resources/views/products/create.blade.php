@@ -23,7 +23,7 @@
         @enderror
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea name="description" id="productDescription"></textarea>
+            <textarea name="description" id="productDescription"  value="{{ old('description') }}"></textarea>
         </div>
         
 
@@ -33,7 +33,7 @@
         @enderror
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" name="price" placeholder="Enter price" >
+            <input type="text" name="price" placeholder="Enter price"  value="{{ old('price') }}">
         </div>
 
 

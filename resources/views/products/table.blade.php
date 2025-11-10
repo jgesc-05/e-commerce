@@ -4,6 +4,7 @@
 <div class="card">
     <h3>Products List</h3>
 <div class="card-body">
+<a href="{{ route('admin.products.create') }}" class="btn btn-success">Add New Product</a>
 <table class="table align-items-center mb-0">
     <thead>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
@@ -32,6 +33,7 @@
         @endforeach
     </tbody>
 </table>
+{{ $products->links() }}
 </div>
 </div>
 @endsection

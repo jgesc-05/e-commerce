@@ -39,7 +39,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|min:0|max:999999.99',
             'category' => 'required|exists:category,id',
             'brand' => 'required|exists:brand,id'
         ]);
@@ -55,12 +55,12 @@ class ProductController extends Controller
 
         $product->save();
 
-        return "SAVED PRODUCT!";
+        return redirect()->route('admin.products.table');
     }
 
     public function table()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->paginate(10);
 
         return view('products.table', ['products' => $products]);
     }
