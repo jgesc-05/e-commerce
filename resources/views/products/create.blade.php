@@ -9,25 +9,40 @@
       <div class="cardbody">
       <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
         @csrf
+        @error('name')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         <div class="input-group input-group-outline mb-3">
             <label for="name">Product Name</label>
-            <input type="text" name="name" id="productName" required>
+            <input type="text" name="name" id="productName"  value="{{ old('name') }}">
         </div>
 
+
+        @error('description')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         <div class="form-group">
             <label for="description">Description</label>
             <textarea name="description" id="productDescription"></textarea>
         </div>
+        
 
+
+        @error('price')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" name="price" placeholder="Enter price" required>
+            <input type="number" name="price" placeholder="Enter price" >
         </div>
 
 
+        @error('category')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         <div class="form-group">
         <label for="category">Category</label>
-        <select name="category" id="category" id="productCategory" required>
+        <select name="category" id="category" id="productCategory">
             <option value="">-- Category --</option>
             @foreach($categories as $c)
               <<option value="{{$c->id}}">{{ $c->name }}</option>
@@ -40,9 +55,12 @@
             <input type="file" name="image" accept="image/*">
         </div>
 
+        @error('brand')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         <div class="form-group">
         <label for="brand">Brand</label>
-        <select name="brand" id="brand" id="productBrand" required>
+        <select name="brand" id="brand" id="productBrand">
             <option value="">-- Brand --</option>
             @foreach($brands as $b)
               <option value="{{$b->id}}">{{ $b->name }}</option>
