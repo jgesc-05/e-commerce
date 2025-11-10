@@ -7,7 +7,7 @@
 
     <div class="card">
       <div class="cardbody">
-      <form action="" method="post" enctype="multipart/form-data">
+      <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="input-group input-group-outline mb-3">
             <label for="name">Product Name</label>

@@ -34,7 +34,7 @@
           <a href="{{ route('register') }}" class="btn">Registrarse</a>
         @endif
 
-        <a href="{{ url('/admin') }}" class="btn btn--ghost">Admin</a>
+        <a href="{{ route('admin.index') }}" class="btn btn--ghost">Admin</a>
 
       @else
         <span class="user">{{ Auth::user()->name }}</span>
