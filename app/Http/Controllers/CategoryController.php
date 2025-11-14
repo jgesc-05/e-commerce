@@ -19,4 +19,11 @@ class CategoryController extends Controller
 
         return "Guardado!";
     }
+
+    public function table()
+    {
+        $categories = Category::orderBy('id', 'desc')->paginate(10);
+
+        return view('admin.category.table', compact('categories'));
+    }
 }
