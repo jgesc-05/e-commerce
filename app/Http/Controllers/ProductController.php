@@ -10,11 +10,33 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    //Lista de productos
-    function index()
+    public function index(Request $request)
     {
-        return view('products.index');
+        // Obtener las categorías para mostrarlas como filtros
+        $categories = Category::all();
+    
+        // Obtener el id de categoría enviado por la URL
+        $categoryId = $request->input('category');
+    
+        // Construir la consulta base
+        $query = Product::query();
+    
+        // Si se envía categoría, filtrar por esa categoría
+        if (!empty($categoryId) && $categoryId !== 'all') {
+            $query->where('category_id', $categoryId);
+        }
+    
+        // Paginar resultados
+        $products = $query->paginate(12)->withQueryString();
+    
+        return view('products.index', [
+            'products' => $products,
+            'categories' => $categories,
+            'activeCategory' => $categoryId, // saber cuál está activa
+        ]);
     }
+    
+    
 
     //Formulario de creación de productos
     public function create()
