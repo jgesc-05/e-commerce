@@ -15,9 +15,27 @@ class CategoryController extends Controller
     public function store(Request $request){
         //dd($request->all());
 
-        Category::create(['name' => $request->get('name')]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
 
-        return "Guardado!";
+
+        $category = new Category();
+
+        $category->name = $request->get('name');
+        $category->save();
+
+        return redirect()->route('admin.products.table');
+    }
+
+    public function delete(int $id)
+    {
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return redirect()->route('admin.category.table');
+
     }
 
     public function table()

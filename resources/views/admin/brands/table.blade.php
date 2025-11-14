@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="card">
-    <h3>Categories List</h3>
+    <h3>Brands List</h3>
 <div class="card-body">
-<a href="{{ route('admin.category.create') }}" class="btn btn-success">Add New Category</a>
+<a href="{{ route('admin.brands.create') }}" class="btn btn-success">Add New Brand</a>
 <table class="table align-items-center mb-0">
     <thead>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
@@ -14,17 +14,17 @@
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated</th>
     </thead>
     <tbody>
-        @foreach($categories as $c)
+        @foreach($brands as $b)
         <tr>
-            <td class="align-middle text-center">{{ $c->id }}</td>
-            <td class="align-middle text-center">{{ $c->name }}</td>
-        
-            <td class="align-middle text-center">{{ $c->created_at }}</td>
-            <td class="align-middle text-center">{{ $c->updated_at }}</td>
+            <td class="align-middle text-center">{{ $b->id }}</td>
+            <td class="align-middle text-center">{{ $b->name }}</td>
+
+            <td class="align-middle text-center">{{ $b->created_at }}</td>
+            <td class="align-middle text-center">{{ $b->updated_at }}</td>
             <td>
                 
-        <form action="{{ route('admin.category.delete', $c->id) }}" method="POST"
-        onsubmit="return confirm('¿Estás seguro de eliminar esta categoría?');">
+        <form action="{{ route('admin.brands.delete', $b->id) }}" method="POST"
+        onsubmit="return confirm('¿Estás seguro de eliminar esta marca?');">
                 @csrf
                 @method('DELETE')
                 <button type="submit" style="color: red; background:none; border:none;">
@@ -36,7 +36,7 @@
         @endforeach
     </tbody>
 </table>
-{{ $categories->links() }}
+{{ $brands->links() }}
 </div>
 </div>
 @endsection

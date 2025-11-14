@@ -58,6 +58,16 @@ class ProductController extends Controller
         return redirect()->route('admin.products.table');
     }
 
+    public function delete(int $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return redirect()->route('admin.products.table');
+
+    }
+
     public function table()
     {
         $products = Product::orderBy('id', 'desc')->paginate(10);

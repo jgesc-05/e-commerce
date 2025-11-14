@@ -17,21 +17,31 @@
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated</th>
     </thead>
     <tbody>
-        @foreach($products as $p)
-        <tr>
-            <td class="align-middle text-center">{{ $p->id }}</td>
-            <td class="align-middle text-center">{{ $p->name }}</td>
-            <td class="align-middle text-center">{{ $p->price }}</td>
-            <td class="align-middle text-center">{{ $p->brand_id }}</td>
-            <td class="align-middle text-center">{{ $p->category_id }}</td>
-            <td class="align-middle text-center">{{ $p->created_at }}</td>
-            <td class="align-middle text-center">{{ $p->updated_at }}</td>
-            <td>
-                <a href="#" style="color: red;">Eliminar</a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
+    @foreach($products as $p)
+    <tr>
+        <td class="align-middle text-center">{{ $p->id }}</td>
+        <td class="align-middle text-center">{{ $p->name }}</td>
+        <td class="align-middle text-center">{{ $p->price }}</td>
+        <td class="align-middle text-center">{{ $p->brand_id }}</td>
+        <td class="align-middle text-center">{{ $p->category_id }}</td>
+        <td class="align-middle text-center">{{ $p->created_at }}</td>
+        <td class="align-middle text-center">{{ $p->updated_at }}</td>
+        <td class="align-middle text-center">
+
+        <form action="{{ route('admin.products.delete', $p->id) }}" method="POST"
+        onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" style="color: red; background:none; border:none;">
+                    Eliminar
+                </button>
+            </form>
+
+        </td>
+    </tr>
+    @endforeach
+</tbody>
+
 </table>
 {{ $products->links() }}
 </div>
